@@ -20,12 +20,13 @@ class RegisterCubit extends Cubit<RegisterStates> {
   RegisterCubit() : super(RegisterInitialState());
 
 
-  final Dio dio = Dio();
+ // final Dio dio = Dio();
 
   static RegisterCubit get(context) => BlocProvider.of<RegisterCubit>(context);
   SignUpModel ? singupModel;
   void addRegister({required String name,required String email,
-   required String password,required String ConfirmPassword}){
+   required String password,required String ConfirmPassword})
+  {
     emit(RegisterLoadingState());
     DioHelper.postData(
       url: ApiConst.SIGNUP,

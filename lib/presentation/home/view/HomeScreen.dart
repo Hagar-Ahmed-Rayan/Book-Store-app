@@ -1,10 +1,13 @@
+import 'package:bookstore/core/SharedFunctions.dart';
 import 'package:bookstore/core/appcolors.dart';
 import 'package:bookstore/core/loadingWidget.dart';
+import 'package:bookstore/presentation/ProfileScreen/viewmodel/cubit/ProfileCubit.dart';
 import 'package:bookstore/presentation/home/view/widgets/ArrivalItem.dart';
 import 'package:bookstore/presentation/home/view/widgets/BestSellerItem.dart';
 import 'package:bookstore/presentation/home/view/widgets/CategoryItem.dart';
 import 'package:bookstore/presentation/home/viewmodel/HomeCubit.dart';
 import 'package:bookstore/presentation/home/viewmodel/HomeStates.dart';
+import 'package:bookstore/presentation/search/view/SearchScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +17,6 @@ import 'package:fluttertoast/fluttertoast.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final imageUrls = HomeCubit.get(context).sliderModel?.data?.sliders;
     ScreenUtil.init(context,
       designSize: const Size(360, 690),
       minTextAdapt: true,
@@ -22,6 +24,7 @@ class HomeScreen extends StatelessWidget {
     return BlocConsumer<HomeCubit, HomeStates>(
       listener: (context, state) {
         if (state is HomeSuccessState) {
+
           Fluttertoast.showToast(
             msg: "Successfully get slider data",
             backgroundColor: Colors.green,
@@ -30,10 +33,96 @@ class HomeScreen extends StatelessWidget {
       },
       builder: (context, state) {
         var homeCubit=HomeCubit.get(context);
+        final imageUrls = HomeCubit.get(context).sliderModel?.data?.sliders;
+
         return Scaffold(
           appBar: AppBar(
-            title: Text('Home Screen'),
             backgroundColor: AppColors.primaryColor,
+            title:    Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child:
+                   /* (BlocProvider.of<ProfileCubit>(context).userprofilemodel!.data==null)?
+                    Text(
+                      'Hi, ${BlocProvider.of<ProfileCubit>(context).userprofilemodel!.data!.name!}',
+
+
+
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18.sp,
+                      ),
+                    ),*/
+                    (BlocProvider.of<ProfileCubit>(context).userprofilemodel!=null)?
+
+                    Text(
+                      'Hi ${BlocProvider.of<ProfileCubit>(context).userprofilemodel!.data!.name!}',
+
+
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18.sp,
+                      ),
+                    ):Text(
+                      'Hi',
+
+
+
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 18.sp,
+                      ),
+                    ),
+
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5.0, bottom: 5.0),
+                    child: Text(
+                      'What are you reading today ?',
+                      style: TextStyle(
+                        color: Colors.black,
+
+                        fontSize: 12,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            leading:                  Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: CircleAvatar(
+                radius: 20,
+                backgroundImage:
+                (BlocProvider.of<ProfileCubit>(context).userprofilemodel!=null)?
+
+                NetworkImage(
+                   BlocProvider.of<ProfileCubit>(context).userprofilemodel!.data!.image!,
+
+                ): NetworkImage(
+
+                      'https://img.freepik.com/free-photo/african-american-man-working-open-air-man-suit-sunglasses-with-beard-using-laptop-sitting-terrace-rooftops-working-manager-technology-concept_74855-25538.jpg?w=996&t=st=1696182445~exp=1696183045~hmac=768522bb303b1b3035706095587b868ff76670d50ce07cf5c8c61c22e8a9c5ef',
+                ),
+              ),
+            ),
+            actions: [
+              IconButton(
+                icon: Icon(Icons.search,
+                  color: Colors.black,
+                ),
+                onPressed: () {
+             navto(context,SearchScreen());
+                  // Handle search button press
+                },
+              ),
+            ],
+
+
           ),
           body: SingleChildScrollView(
             child: Column(

@@ -1,3 +1,4 @@
+import 'package:bookstore/core/cache_helper.dart';
 import 'package:dio/dio.dart';
 
 
@@ -15,10 +16,15 @@ class DioHelper {
         required String url,
         Map<String, dynamic>? query,
         String? token
+
       }) async {
+print("%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%");
+print(token);
+//String token=CacheHelper.getData(key: "token");
+    print(CacheHelper.getData(key: "token"));
 
     dio.options.headers = {
-      'Authorization': "Bearer$token",
+      'Authorization': "Bearer $token",
       'Content-Type': 'application/json',
       'Accept': 'application/json',
     };

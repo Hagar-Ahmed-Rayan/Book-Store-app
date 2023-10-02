@@ -2,8 +2,11 @@ import 'package:bookstore/core/bloc_observer.dart';
 import 'package:bookstore/core/dio_helper.dart';
 import 'package:bookstore/presentation/LoginScreen/viewmodel/SignIncubit/SigninCubit.dart';
 import 'package:bookstore/presentation/ProductsScreen/viewModel/booksCubit.dart';
+import 'package:bookstore/presentation/ProfileScreen/viewmodel/cubit/ProfileCubit.dart';
+import 'package:bookstore/presentation/UpdateProfile/viewmodel/UpdateProfileCubit.dart';
 import 'package:bookstore/presentation/home/viewmodel/HomeCubit.dart';
 import 'package:bookstore/presentation/register_screen/view_model/cubit/cubit.dart';
+import 'package:bookstore/presentation/search/viewmodel/searchcubit.dart';
 import 'package:bookstore/presentation/splash_screen/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,6 +35,10 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context)=>  HomeCubit()..GetSliders()..GetBestSeller()..GetCategories()..GetArrivals()),
           BlocProvider(create: (context)=>  BooksCubit()..GetAllProducts()         ),
 
+        BlocProvider(create: (context)=>  SearchCubit()     ),
+
+        BlocProvider(create: (context)=>  ProfileCubit()     ),
+        BlocProvider(create: (context)=>  UpdateProfileCubit()..GetAllGovern()    ),
 
 
       ],

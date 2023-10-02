@@ -16,5 +16,11 @@ class ApiConst{
 
   static const  String GETALLPRODUCTS  = '/products';
 
+  static const  String GETPROFILE  = '/profile';
+
+  static const  String UPDATEPROFILE  = '/update-profile';
+  static const  String GETGOVERN  = '/governorates';
+
+
 }
 

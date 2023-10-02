@@ -3,6 +3,7 @@ import 'package:bookstore/core/appcolors.dart';
 import 'package:bookstore/presentation/BotttomNavBar/BottomNavBar.dart';
 import 'package:bookstore/presentation/Otp/view/screens/OTPScreen.dart';
 import 'package:bookstore/presentation/ProductsScreen/viewModel/booksCubit.dart';
+import 'package:bookstore/presentation/ProfileScreen/viewmodel/cubit/ProfileCubit.dart';
 import 'package:bookstore/presentation/home/viewmodel/HomeCubit.dart';
 import 'package:bookstore/presentation/register_screen/view_model/cubit/cubit.dart';
 import 'package:bookstore/presentation/register_screen/view_model/cubit/states.dart';
@@ -45,9 +46,10 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
              msg: "Successfully sign up",
             backgroundColor: Colors.green,
            );
+           BlocProvider.of<ProfileCubit>(context).GetUserProfile();
 
-           BlocProvider.of<HomeCubit>(context).GetSliders();
-           BlocProvider.of<BooksCubit>(context).GetAllProducts();
+      //     BlocProvider.of<HomeCubit>(context).GetSliders();
+        //   BlocProvider.of<BooksCubit>(context).GetAllProducts();
            navto(context,NavBarScreen());
         }
 

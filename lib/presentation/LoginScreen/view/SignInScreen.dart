@@ -7,6 +7,7 @@ import 'package:bookstore/presentation/BotttomNavBar/BottomNavBar.dart';
 import 'package:bookstore/presentation/LoginScreen/viewmodel/SignIncubit/SignInStates.dart';
 import 'package:bookstore/presentation/LoginScreen/viewmodel/SignIncubit/SigninCubit.dart';
 import 'package:bookstore/presentation/ProductsScreen/viewModel/booksCubit.dart';
+import 'package:bookstore/presentation/ProfileScreen/viewmodel/cubit/ProfileCubit.dart';
 import 'package:bookstore/presentation/home/viewmodel/HomeCubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -42,9 +43,12 @@ class SignInScreen extends StatelessWidget {
        //   navto(context,UserProfileScreen());
 
           print( state.signinmodel.message);
-print(CacheHelper.getData(key: "token"));
-          BlocProvider.of<HomeCubit>(context).GetSliders();
-          BlocProvider.of<BooksCubit>(context).GetAllProducts();
+       //   BlocProvider.of<HomeCubit>(context).GetSliders();
+         // BlocProvider.of<BooksCubit>(context).GetAllProducts();
+          print("tokennnnnnnnnn issssss");
+          print(CacheHelper.getData(key: "token"));
+
+          BlocProvider.of<ProfileCubit>(context).GetUserProfile();
 
 
          Navigator.push(

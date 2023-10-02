@@ -26,38 +26,41 @@ class _SplashScreenState extends State<SplashScreen> {
   }
   @override
   Widget build(BuildContext context) {
-    return  Container(
-        height: double.infinity,
-        width: double.infinity,
-        decoration: BoxDecoration(
-        color: Colors.white,
-        border: Border.all(width: 20),
-        borderRadius: BorderRadius.circular(20),
-        ),
-        child:Column(
-          children: [
-            Spacer(flex: 3,),
-            SvgPicture.asset(
-              'assets/img/newsplash.svg',
-              width: 200,
-              height: 200,
-           //   color: AppColors.primaryColor,
+    return  SafeArea(
+      child: Scaffold(
+        body: Container(
+            height: double.infinity,
+            width: double.infinity,
+            decoration: BoxDecoration(
+            color: Colors.white,
+            border: Border.all(width: 20),
+            borderRadius: BorderRadius.circular(20),
+            ),
+            child:Column(
+              children: [
+                Spacer(flex: 3,),
+                SvgPicture.asset(
+                  'assets/img/newsplash.svg',
+                  width: 200,
+                  height: 200,
+               //   color: AppColors.primaryColor,
 
-            ),
-         /*   Image.asset(
-                'assets/img/splash_book.svg',
-            ),*/
-            Text(
-              'book store',
-              style: TextStyle(
-                fontSize: 35,
-                fontWeight: FontWeight.bold,
-                color:AppColors.primaryColor,
-              ),
-            ),
-            Spacer(flex: 3,),
-          ],
-        )
+                ),
+             /*   Image.asset(
+                    'assets/img/splash_book.svg',
+                ),*/
+                Text(
+                  'book store',
+                  style: TextStyle(
+                    fontSize: 35,
+                    fontWeight: FontWeight.bold,
+                    color:AppColors.primaryColor,
+                  ),
+                ),
+              ],
+            )
+        ),
+      ),
     );
   }
 }

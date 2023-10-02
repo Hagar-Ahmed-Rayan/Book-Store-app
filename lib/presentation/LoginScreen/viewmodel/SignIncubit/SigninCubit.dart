@@ -88,18 +88,14 @@ class SignInCubit extends Cubit<SignInStates> {
       } else {
         print(error);
       }
-      /* if (error is DioError && error.response?.statusCode == 401) {
-        final data = error.response?.data;
-        final message = data['message'];
-        Fluttertoast.showToast(
-          msg: "$message",
-          backgroundColor: Colors.red,
-        );
-
-        // final errors = Map<String, List<String>>.from(data['errors']);
-      }*/
       emit(SignInErrorState(error.toString()));
     });
+
+
+
+
+
+
   }
 
 
