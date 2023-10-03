@@ -41,7 +41,7 @@ print(token);
       }) async {
     dio.options.headers = {
       'Authorization': "Bearer $token",
-   //   'Content-Type': 'application/json',
+    // 'Content-Type': 'application/json',
       'Accept': 'application/json',
     };
     return await dio.post(url, queryParameters: query, data: data);

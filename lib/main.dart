@@ -4,6 +4,8 @@ import 'package:bookstore/presentation/LoginScreen/viewmodel/SignIncubit/SigninC
 import 'package:bookstore/presentation/ProductsScreen/viewModel/booksCubit.dart';
 import 'package:bookstore/presentation/ProfileScreen/viewmodel/cubit/ProfileCubit.dart';
 import 'package:bookstore/presentation/UpdateProfile/viewmodel/UpdateProfileCubit.dart';
+import 'package:bookstore/presentation/cart/viewmodel/Cartcubit.dart';
+import 'package:bookstore/presentation/favourite/viewmodel/FavouriteCubit.dart';
 import 'package:bookstore/presentation/home/viewmodel/HomeCubit.dart';
 import 'package:bookstore/presentation/register_screen/view_model/cubit/cubit.dart';
 import 'package:bookstore/presentation/search/viewmodel/searchcubit.dart';
@@ -39,6 +41,9 @@ class MyApp extends StatelessWidget {
 
         BlocProvider(create: (context)=>  ProfileCubit()     ),
         BlocProvider(create: (context)=>  UpdateProfileCubit()..GetAllGovern()    ),
+        BlocProvider(create: (context)=>  FavouriteCubit()    ),
+        BlocProvider(create: (context)=>  CartCubit()..GetCart()  ),
+
 
 
       ],

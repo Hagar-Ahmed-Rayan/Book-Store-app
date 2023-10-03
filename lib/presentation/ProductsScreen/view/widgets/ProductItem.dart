@@ -2,7 +2,12 @@ import 'package:bookstore/core/SharedFunctions.dart';
 import 'package:bookstore/core/appcolors.dart';
 import 'package:bookstore/presentation/ProductDetailsScreen/ProductDetailsScreen.dart';
 import 'package:bookstore/presentation/ProductsScreen/models/ProductModel/Products.dart';
+import 'package:bookstore/presentation/ProductsScreen/viewModel/booksCubit.dart';
+import 'package:bookstore/presentation/ProfileScreen/viewmodel/cubit/ProfileCubit.dart';
+import 'package:bookstore/presentation/cart/viewmodel/Cartcubit.dart';
+import 'package:bookstore/presentation/favourite/viewmodel/FavouriteCubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 class ProductItem extends StatelessWidget {
@@ -110,6 +115,9 @@ class ProductItem extends StatelessWidget {
 
 
                     ),
+
+
+                      (product!.priceAfterDiscount!=null)?
                     Text((product!.priceAfterDiscount!).toString(),
                         style:  TextStyle(
                           color: AppColors.primaryColor,
@@ -120,16 +128,107 @@ class ProductItem extends StatelessWidget {
 
 
 
-                    ),
+                    ):
+                      Text((product!.discount!).toString(),
+                          style:  TextStyle(
+                            color: AppColors.primaryColor,
+
+
+
+                          )
+
+
+
+                      )
+
                   ],),
                 ),
                 Column(
                   children: [
                     IconButton(onPressed: (){
 
-                    }, icon:Icon(Icons.favorite)),
+
+print("iddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd");
+                              print(product.id);
+
+                       /*    bool isidExists=false;
+
+                              for(int i=0;i<BlocProvider.of<FavouriteCubit>(context).favouritesIds.length;i++) {
+                                print("========================================");
+                                if((BlocProvider.of<FavouriteCubit>(context).favouritesIds[i]).toString()==(product.id).toString())
+                                 isidExists=true;
+                                print(BlocProvider.of<FavouriteCubit>(context).favouritesIds[i]);
+
+                              }
+
+                       //       bool isidExists = BlocProvider.of<FavouriteCubit>(context).favouritesIds.contains(product.id);
+                              if (isidExists) {
+                                BlocProvider.of<FavouriteCubit>(context).DeleteFavourites((product.id).toString());
+
+                                print('The id exists in the list.');
+                              } else {
+                                BlocProvider.of<FavouriteCubit>(context).AddToFavourites((product.id).toString()); //add
+
+                                print('The id does not exist in the list.');
+                              }*/
+/*for(int i=0;i<BlocProvider.of<FavouriteCubit>(context).favouritesIds.length;i++) {
+  print(BlocProvider.of<FavouriteCubit>(context).favouritesIds[i]);
+
+}*/
+//print("========================================");
+String id=(product.id).toString();
+if (BlocProvider.of<FavouriteCubit>(context).favouritesIds.contains(id)) {
+  print('${product.id} exists in the list.');
+  BlocProvider.of<FavouriteCubit>(context).DeleteFavourites((product.id).toString());
+
+
+  /*  BlocProvider.of<FavouriteCubit>(context).favouritesIds.remove(id);
+
+  // BlocProvider.of<FavouriteCubit>(context).ChangFavIconColor(id);
+  for(int i=0;i<BlocProvider.of<FavouriteCubit>(context).favouritesIds.length;i++) {
+    print("===================del=======================");
+    print(BlocProvider.of<FavouriteCubit>(context).favouritesIds[i]);
+
+  }*/
+
+} else {
+  print('${product.id} does not exist in the list.');
+  BlocProvider.of<FavouriteCubit>(context).AddToFavourites((product.id).toString()); //add
+ /* BlocProvider.of<FavouriteCubit>(context).favouritesIds.add(id);
+
+  for(int i=0;i<BlocProvider.of<FavouriteCubit>(context).favouritesIds.length;i++) {
+    print("===================add=======================");
+    print(BlocProvider.of<FavouriteCubit>(context).favouritesIds[i]);
+
+  }*/
+
+  // BlocProvider.of<FavouriteCubit>(context).ChangFavIconColor(id);
+
+
+}
+
+
+
+
+
+
+
+                    }, icon:Icon(Icons.favorite,
+
+                   //   color: BlocProvider.of<FavouriteCubit>(context).FavColorIcon
+                    color: (BlocProvider.of<FavouriteCubit>(context).favouritesIds.contains((product.id).toString()))
+                         ?AppColors.primaryColor: Colors.grey,
+
+
+                    )
+
+
+                    ),
                     Spacer(),
                     IconButton(onPressed: (){
+
+                      BlocProvider.of<CartCubit>(context).AddToCart((product.id).toString());
+
 
                     }, icon:Icon(Icons.shopping_basket_outlined)),
 

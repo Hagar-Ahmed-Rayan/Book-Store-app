@@ -20,6 +20,18 @@ class ApiConst{
 
   static const  String UPDATEPROFILE  = '/update-profile';
   static const  String GETGOVERN  = '/governorates';
+  static const  String GETFAVOURITE  = '/wishlist';
+  static const  String ADDTOFAVOURITE  = '/add-to-wishlist';
+  static const  String DELETEFAVOURITE  = '/remove-from-wishlist';
+  static const  String SHOWCART='/cart';
+  static const  String ADDTOCART='/add-to-cart';
+
+  static const  String DELETECART='/remove-from-cart';
+
+
+
+  static const  String UPDATECART='/update-cart';
+
 
 
 }

@@ -1,6 +1,8 @@
 import 'package:bookstore/core/appcolors.dart';
 import 'package:bookstore/presentation/ProductsScreen/view/screens/BooksScreen.dart';
 import 'package:bookstore/presentation/ProfileScreen/views/UserProfileScreen.dart';
+import 'package:bookstore/presentation/cart/view/screens/CartScreen.dart';
+import 'package:bookstore/presentation/favourite/view/screens/FavouriteScreen.dart';
 import 'package:bookstore/presentation/home/view/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -19,8 +21,10 @@ class _NavBarScreenState extends State<NavBarScreen> {
     BooksScreen(),
    // Text("home"),
     //Text("books"),
-    Text("favourite"),
-    Text("cart"),
+    FavouriteScreen(),
+ //Text("favourite"),
+    CartScreen(),
+  //  Text("cart"),
     UserProfileScreen(),
    // Text("profile")
 

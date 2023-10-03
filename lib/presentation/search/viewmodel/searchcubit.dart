@@ -14,6 +14,9 @@ class SearchCubit extends Cubit<SearchStates> {
 SearchCubit() : super(SearchInitialState());
 static SearchCubit get(context) => BlocProvider.of<SearchCubit>(context);
 ProductModel? productmodel;
+
+
+
 void GetSearchItems(String name){
  emit(SearchLoadingState());
 DioHelper.getData(

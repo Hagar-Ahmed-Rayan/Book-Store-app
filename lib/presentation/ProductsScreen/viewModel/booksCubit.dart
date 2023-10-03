@@ -40,11 +40,11 @@ class BooksCubit extends Cubit<BooksStates> {
     ).then((response) {
 
       productmodel = ProductModel.fromJson(response.data);
-      print("GET ALL PRODUCTS DONEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+      print("GET ALL PRODUCTS DONEEEEEEEEEEEEEEEEEEEEEE");
        print(response.data);
       emit(GetProductsSuccessState());
     }).catchError((error){
-      print("erorrrrrrrrrrrrrrrrrrrrrrrrrr");
+      print("erorrrrrrrrrrrrrrrrrrrrrrrrrr IN GET ALL PRODUCTS");
       print(error.response);
       print("Error: $error");
       if (error is DioError && error.response?.statusCode == 422) {

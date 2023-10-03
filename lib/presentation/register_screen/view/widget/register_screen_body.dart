@@ -4,6 +4,7 @@ import 'package:bookstore/presentation/BotttomNavBar/BottomNavBar.dart';
 import 'package:bookstore/presentation/Otp/view/screens/OTPScreen.dart';
 import 'package:bookstore/presentation/ProductsScreen/viewModel/booksCubit.dart';
 import 'package:bookstore/presentation/ProfileScreen/viewmodel/cubit/ProfileCubit.dart';
+import 'package:bookstore/presentation/favourite/viewmodel/FavouriteCubit.dart';
 import 'package:bookstore/presentation/home/viewmodel/HomeCubit.dart';
 import 'package:bookstore/presentation/register_screen/view_model/cubit/cubit.dart';
 import 'package:bookstore/presentation/register_screen/view_model/cubit/states.dart';
@@ -47,6 +48,8 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
             backgroundColor: Colors.green,
            );
            BlocProvider.of<ProfileCubit>(context).GetUserProfile();
+           BlocProvider.of<FavouriteCubit>(context).GetFavourites();
+
 
       //     BlocProvider.of<HomeCubit>(context).GetSliders();
         //   BlocProvider.of<BooksCubit>(context).GetAllProducts();
