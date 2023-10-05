@@ -108,7 +108,7 @@ class HomeScreen extends StatelessWidget {
 
                 ): NetworkImage(
 
-                      'https://img.freepik.com/free-photo/african-american-man-working-open-air-man-suit-sunglasses-with-beard-using-laptop-sitting-terrace-rooftops-working-manager-technology-concept_74855-25538.jpg?w=996&t=st=1696182445~exp=1696183045~hmac=768522bb303b1b3035706095587b868ff76670d50ce07cf5c8c61c22e8a9c5ef',
+                      'https://img.freepik.com/premium-vector/character-working-computer_466450-1489.jpg?w=740',
                 ),
               ),
             ),

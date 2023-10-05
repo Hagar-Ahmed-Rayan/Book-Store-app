@@ -198,7 +198,7 @@ Fluttertoast.showToast(
       String quantity
       ){
     print("this is update idddddddddddddd");
-    GetCart();
+   // GetCart();
 
     print(productId);
     emit(UpdateCartLoadingState());
@@ -227,6 +227,8 @@ Fluttertoast.showToast(
 
       emit(UpdateCartSuccessState(cartmodel!));
     }).catchError((error){
+      String ?quantityError;
+
       print("erorrrrrrrrrrrrrrrrrrrrrrrrrr update from cart");
       print("Error: $error");
       print(error.toString());
@@ -235,6 +237,15 @@ Fluttertoast.showToast(
         final responseData = error.response?.data;
         if (responseData != null && responseData.containsKey('errors')) {
           final errors = responseData['errors'];
+          if (errors is Map && errors.containsKey('quantity')) {
+            quantityError = errors['quantity'][0];
+            print("quantity Error: $quantityError");
+            Fluttertoast.showToast(
+              msg: quantityError!,
+              backgroundColor: Colors.red,
+            );
+          }
+
         }
 
 
