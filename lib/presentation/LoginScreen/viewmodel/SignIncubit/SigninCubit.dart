@@ -48,9 +48,36 @@ class SignInCubit extends Cubit<SignInStates> {
 
       emit(SignInSuccessState(signinModel!));
     }).catchError((error){
+      String ?emailError;
+
       print("Error in sign in");
       print(" ${error.toString()}");
       if (error is DioError) {
+        print(error.response);
+        if(error.response?.statusCode == 422) {
+          final responseData = error.response?.data;
+
+          if (responseData != null && responseData.containsKey('errors')) {
+            final errors = responseData['errors'];
+            if (errors is Map && errors.containsKey('email')) {
+              emailError = errors['email'][0];
+              print("Email Error: $emailError");
+              Fluttertoast.showToast(
+                msg: emailError!,
+                backgroundColor: Colors.red,
+              );
+            }
+          }
+
+          else if (responseData != null && responseData.containsKey('message')){
+            final msg = responseData['message'];
+            Fluttertoast.showToast(
+              msg: msg!,
+              backgroundColor: Colors.red,
+            );
+
+          }
+        }
         if (error.response != null) {
           print(error.response!.data);
           print(error.response!.statusCode);
@@ -85,7 +112,13 @@ class SignInCubit extends Cubit<SignInStates> {
           print(error.requestOptions);
           print(error.message);
         }
-      } else {
+      }
+
+
+
+
+
+      else {
         print(error);
       }
       emit(SignInErrorState(error.toString()));

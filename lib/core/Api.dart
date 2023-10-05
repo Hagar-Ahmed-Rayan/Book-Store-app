@@ -32,6 +32,8 @@ class ApiConst{
 
   static const  String UPDATECART='/update-cart';
 
+  static const  String CHECKOUT='/checkout';
+  static const  String PLACEORDER='/place-order';
 
 
 }

@@ -10,6 +10,7 @@ import 'package:bookstore/presentation/ProductsScreen/viewModel/booksCubit.dart'
 import 'package:bookstore/presentation/ProfileScreen/viewmodel/cubit/ProfileCubit.dart';
 import 'package:bookstore/presentation/favourite/viewmodel/FavouriteCubit.dart';
 import 'package:bookstore/presentation/home/viewmodel/HomeCubit.dart';
+import 'package:bookstore/presentation/register_screen/view/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -179,7 +180,7 @@ class SignInScreen extends StatelessWidget {
 
                       Text('Do not have an account yet?'),
                       TextButton(onPressed: () {
-
+ navto(context,RegisterScreen());
 
                       }, child: Text('sign up',
                         style: TextStyle(

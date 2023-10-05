@@ -15,12 +15,12 @@ class CartItems {
     itemQuantity = json['item_quantity'];
     itemTotal = json['item_total'];
   }
-  int itemId;
-  int itemProductId;
-  String itemProductName;
-  String itemProductPrice;
-  int itemQuantity;
-  String itemTotal;
+  num? itemId;
+  num? itemProductId;
+  String? itemProductName;
+  String? itemProductPrice;
+  num? itemQuantity;
+  String? itemTotal;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

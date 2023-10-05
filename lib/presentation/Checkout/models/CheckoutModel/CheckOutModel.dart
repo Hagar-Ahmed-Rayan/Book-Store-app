@@ -13,27 +13,15 @@ class CheckOutModel {
     if (json['error'] != null) {
       error = [];
       json['error'].forEach((v) {
-        error.add(Dynamic.fromJson(v));
+        error?.add((v));
       });
     }
     status = json['status'];
   }
-  Data data;
-  String message;
-  List<dynamic> error;
-  int status;
+  Data? data;
+  String? message;
+  List<String>? error;
+  num? status;
 
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    if (data != null) {
-      map['data'] = data.toJson();
-    }
-    map['message'] = message;
-    if (error != null) {
-      map['error'] = error.map((v) => v.toJson()).toList();
-    }
-    map['status'] = status;
-    return map;
-  }
 
 }

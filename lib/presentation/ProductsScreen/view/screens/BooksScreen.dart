@@ -12,6 +12,7 @@ class BooksScreen extends StatelessWidget {
     return BlocConsumer<BooksCubit,BooksStates>(
       listener: (context, state) {},
       builder:(context, state){
+       // BooksCubit.get(context).getMoreData();
         return Scaffold(
           appBar: AppBar(
             backgroundColor: AppColors.primaryColor,
@@ -21,14 +22,42 @@ class BooksScreen extends StatelessWidget {
           Container(
             //height: 500,
             child: ListView.builder(
-              itemBuilder:(context,index)=> ProductItem(product: BooksCubit.get(context).productmodel!.data!.products![index]),
+              controller: BooksCubit.get(context).scrollController,
+              itemBuilder:(context,index) {
+            /*    if(index>=BooksCubit.get(context).books!.length-1)//47>=48 true
+                {
+                  print("yessssssssssssssssssssssss");
+                  print(BooksCubit.get(context).page);
+                  return Center(child: CircularProgressIndicator(),);
+                }*/
+
+
+
+                   return ProductItem(product: BooksCubit
+                    .get(context)
+                    .productmodel!
+                    .data!
+                    .products![index]);
+             /*   return ProductItem(product: BooksCubit
+                    .get(context)
+                    .books[index]);*/
+
+
+              },
               itemCount: BooksCubit.get(context).productmodel?.data?.products!.length ,
-           //   itemCount: 500 ,
+             /* itemCount: (BooksCubit.get(context).isLoadMore)
+                  ? BooksCubit.get(context).books.length + 1
+                  : BooksCubit.get(context).books.length,*/
+
+
+              //   itemCount: 500 ,
              //   itemBuilder:(context,index)=> Text('uuuuuu'),
 
               scrollDirection: Axis.vertical,
          //   shrinkWrap: true,
-              physics:ScrollPhysics(),
+              physics:  BouncingScrollPhysics(),
+
+             // physics:ScrollPhysics(),
 
             ),
           )

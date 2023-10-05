@@ -129,7 +129,8 @@ class UserProfileScreen extends StatelessWidget {
                         style: TextStyle(fontSize: 16),
                       ),
                     SizedBox(height: 10.h),
-                    if(ProfileCubit.get(context).userprofilemodel!.data!.city!= null)
+
+                      if(ProfileCubit.get(context).userprofilemodel!.data!.city!= null)
                       Text(
                         ProfileCubit.get(context).userprofilemodel!.data!.city!,
 

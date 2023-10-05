@@ -1,5 +1,6 @@
 import 'package:bookstore/core/bloc_observer.dart';
 import 'package:bookstore/core/dio_helper.dart';
+import 'package:bookstore/presentation/Checkout/viewmodel/CheckoutCubit.dart';
 import 'package:bookstore/presentation/LoginScreen/viewmodel/SignIncubit/SigninCubit.dart';
 import 'package:bookstore/presentation/ProductsScreen/viewModel/booksCubit.dart';
 import 'package:bookstore/presentation/ProfileScreen/viewmodel/cubit/ProfileCubit.dart';
@@ -43,6 +44,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context)=>  UpdateProfileCubit()..GetAllGovern()    ),
         BlocProvider(create: (context)=>  FavouriteCubit()    ),
         BlocProvider(create: (context)=>  CartCubit()..GetCart()  ),
+        BlocProvider(create: (context)=>  CheckoutCubit()  ),
+
 
 
 

@@ -4,6 +4,8 @@ import 'package:bookstore/core/Api.dart';
 import 'package:bookstore/core/SharedFunctions.dart';
 import 'package:bookstore/core/cache_helper.dart';
 import 'package:bookstore/core/dio_helper.dart';
+import 'package:bookstore/presentation/Checkout/models/PlaceOrderModel/PlaceOrderModel.dart';
+import 'package:bookstore/presentation/Checkout/viewmodel/CheckoutStates.dart';
 import 'package:bookstore/presentation/ProfileScreen/models/userprofileModel/UserProfileModel.dart';
 import 'package:bookstore/presentation/ProfileScreen/viewmodel/cubit/ProfileCubit.dart';
 import 'package:bookstore/presentation/ProfileScreen/viewmodel/cubit/ProfileStates.dart';
@@ -11,6 +13,7 @@ import 'package:bookstore/presentation/ProfileScreen/views/UserProfileScreen.dar
 import 'package:bookstore/presentation/UpdateProfile/models/UpdateprofileModel/UserProfileModel.dart';
 import 'package:bookstore/presentation/UpdateProfile/models/governmodel/GovernModel.dart';
 import 'package:bookstore/presentation/UpdateProfile/viewmodel/updateprofileStates.dart';
+import 'package:bookstore/presentation/cart/viewmodel/Cartcubit.dart';
 import 'package:bookstore/presentation/register_screen/view_model/cubit/states.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -135,6 +138,68 @@ class UpdateProfileCubit extends Cubit<UpdateProfileStates> {
 
         });
 
+  }
+
+
+  PlaceOrderModel? placeordermodel;
+
+  void PlaceOrder(String name,String id,String phone,String address,String email){
+    print("PlaceOrdertLoadingStatesssssssssssssssssssssssss");
+    emit(PlaceOrdertLoadingState());
+    DioHelper.postData(
+      url: ApiConst.PLACEORDER,
+      data: {
+        'name':name,
+        'governorate_id':id,
+        'phone':phone,
+        'address':address,
+        'email':email
+
+      },
+      token:CacheHelper.getData(key: "token"),
+
+
+    ).then((response) {
+
+      placeordermodel = PlaceOrderModel.fromJson(response.data);
+      print("place order DONEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+      print(response.data);
+    /* Fluttertoast.showToast(msg: "Order Placed",
+          backgroundColor: Colors.green
+      );*/
+      //   Navigator.pop(context);
+      //showPopupMessage(context, 'Done');
+
+
+      emit(PlaceOrderSuccessState());
+    }).catchError((error){
+      print("erorrrrrrrrrrrrrrrrrrrrrrrrrr place order");
+      print(error.response);
+
+      print("Error: $error");
+      if (error is DioError && error.response?.statusCode == 422) {
+        final responseData = error.response?.data;
+        if (responseData != null && responseData.containsKey('errors')) {
+          final errors = responseData['errors'];
+        }
+
+
+
+      }
+      if (error is DioError && error.response?.statusCode == 404) {
+        final responseData = error.response?.data;
+
+        Fluttertoast.showToast(msg: error.response!.statusMessage.toString(),
+            backgroundColor: Colors.orange
+        );
+        ///////get cart items products
+
+
+
+      }
+
+      emit(PlaceOrderErrorState(error.toString()));
+    });
   }
 
 }

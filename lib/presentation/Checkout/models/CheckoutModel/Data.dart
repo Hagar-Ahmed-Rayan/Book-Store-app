@@ -15,24 +15,24 @@ class Data {
     if (json['cart_items'] != null) {
       cartItems = [];
       json['cart_items'].forEach((v) {
-        cartItems.add(CartItems.fromJson(v));
+        cartItems?.add(CartItems.fromJson(v));
       });
     }
   }
-  int id;
-  User user;
-  String total;
-  List<CartItems> cartItems;
+  num? id;
+  User? user;
+  String? total;
+  List<CartItems>? cartItems;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = id;
     if (user != null) {
-      map['user'] = user.toJson();
+      map['user'] = user?.toJson();
     }
     map['total'] = total;
     if (cartItems != null) {
-      map['cart_items'] = cartItems.map((v) => v.toJson()).toList();
+      map['cart_items'] = cartItems?.map((v) => v.toJson()).toList();
     }
     return map;
   }

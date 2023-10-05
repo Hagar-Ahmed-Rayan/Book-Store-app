@@ -1,9 +1,10 @@
 import 'package:bookstore/core/SharedFunctions.dart';
 import 'package:bookstore/core/appcolors.dart';
 import 'package:bookstore/core/loadingWidget.dart';
+import 'package:bookstore/presentation/Checkout/view/CheckoutScreen.dart';
+import 'package:bookstore/presentation/Checkout/viewmodel/CheckoutCubit.dart';
 import 'package:bookstore/presentation/ProductsScreen/viewModel/booksCubit.dart';
 import 'package:bookstore/presentation/ProductsScreen/viewModel/booksStates.dart';
-import 'package:bookstore/presentation/cart/view/screens/CheckoutScreen.dart';
 import 'package:bookstore/presentation/cart/view/widgets/CartItem.dart';
 import 'package:bookstore/presentation/cart/viewmodel/CartStates.dart';
 import 'package:bookstore/presentation/cart/viewmodel/Cartcubit.dart';
@@ -31,7 +32,12 @@ class CartScreen extends StatelessWidget {
               children:[
             ( (CartCubit.get(context).cartmodel!=null)&&(CartCubit.get(context).cartmodel!.data?.cartItems?.isEmpty==true))?
 
-            Center(child:Text("you have no cart items yet")):
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 50.0,horizontal: 8),
+              child: Center(child:Text("you have no cart items yet",
+
+              )),
+            ):
 
             ((CartCubit.get(context).cartmodel!=null)&&(CartCubit.get(context).cartmodel!.data?.cartItems?.isEmpty==false))?
             Column(
@@ -110,7 +116,7 @@ class CartScreen extends StatelessWidget {
 
 
 
-
+                          BlocProvider.of<CheckoutCubit>(context).GetCheckout();
 
 
                           navto(context,CheckoutScreen( checkoutData: checkoutData, cartmodel: CartCubit.get(context).cartmodel!,));

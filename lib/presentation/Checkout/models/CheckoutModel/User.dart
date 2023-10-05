@@ -13,11 +13,11 @@ class User {
     address = json['address'];
     phone = json['phone'];
   }
-  int userId;
-  String userName;
-  String userEmail;
-  String address;
-  String phone;
+  num? userId;
+  String? userName;
+  String? userEmail;
+  String? address;
+  String? phone;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

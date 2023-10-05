@@ -32,3 +32,15 @@ class GetGovernErrorState extends   UpdateProfileStates
   GetGovernErrorState(this.error);
 }
 
+///PLACE ORDER STATES
+class PlaceOrdertLoadingState extends   UpdateProfileStates{}
+class PlaceOrderSuccessState extends   UpdateProfileStates
+{
+
+
+}
+class PlaceOrderErrorState extends   UpdateProfileStates
+{
+  String error;
+  PlaceOrderErrorState(this.error);
+}

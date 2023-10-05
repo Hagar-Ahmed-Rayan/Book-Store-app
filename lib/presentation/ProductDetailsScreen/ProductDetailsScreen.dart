@@ -2,7 +2,9 @@
 
 import 'package:bookstore/core/appcolors.dart';
 import 'package:bookstore/presentation/ProductsScreen/models/ProductModel/Products.dart';
+import 'package:bookstore/presentation/cart/viewmodel/Cartcubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductDetailsScreen extends StatelessWidget {
@@ -111,6 +113,8 @@ class ProductDetailsScreen extends StatelessWidget {
                 height: 45,
                 child: ElevatedButton(
                   onPressed: () {
+                    BlocProvider.of<CartCubit>(context).AddToCart((product.id).toString());
+
                   },
                   style: ElevatedButton.styleFrom(
                     primary: AppColors.primaryColor,

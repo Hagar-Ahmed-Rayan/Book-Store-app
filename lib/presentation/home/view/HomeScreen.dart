@@ -17,6 +17,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ScrollController _bestSellerListController = ScrollController();
+
     ScreenUtil.init(context,
       designSize: const Size(360, 690),
       minTextAdapt: true,
@@ -170,7 +172,15 @@ class HomeScreen extends StatelessWidget {
                       ),
                       Spacer(),
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          _bestSellerListController.animateTo(
+                            _bestSellerListController.offset + MediaQuery.of(context).size.width,
+                            curve: Curves.linear,
+                            duration: Duration(milliseconds: 500),
+                          );
+
+
+                        },
                         icon: Icon(Icons.arrow_forward),
                       ),
                     ],
@@ -180,9 +190,16 @@ class HomeScreen extends StatelessWidget {
                   SizedBox(
                     height: 170.h,
                     child: ListView.builder(itemBuilder:(context,index)=> BestSellerItem(product: homeCubit.bestsellerModel!.data!.products![index],),
-                    itemCount: homeCubit.bestsellerModel?.data?.products?.length??0,
+                      controller: _bestSellerListController, // Add this line
+
+                      itemCount: homeCubit.bestsellerModel?.data?.products?.length??0,
                     scrollDirection: Axis.horizontal,),
                   ):CustomLoadingIndicator(),
+
+
+
+
+
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child: Row(
