@@ -35,6 +35,7 @@ class ApiConst{
   static const  String CHECKOUT='/checkout';
   static const  String PLACEORDER='/place-order';
 
+  static const  String LOGOUT='/logout';
 
 }
 

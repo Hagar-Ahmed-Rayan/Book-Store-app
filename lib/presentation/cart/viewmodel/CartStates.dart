@@ -18,6 +18,10 @@ class GetCartErrorState extends   CartStates
   String error;
   GetCartErrorState(this.error);
 }
+
+
+
+
 ///add to favourite
 class AddToCartLoadingState extends   CartStates{}
 class AddToCartSuccessState extends   CartStates

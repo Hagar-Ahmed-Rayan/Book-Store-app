@@ -15,6 +15,7 @@ class SignInCubit extends Cubit<SignInStates> {
   SignInCubit() : super(SignInInitialState());
   static SignInCubit get(context) => BlocProvider.of(context);
   bool iskeepsigninSelected = false;
+  bool showPassword = false;
 
   void changeGenderSelection(bool value) {
     iskeepsigninSelected = value;
@@ -132,7 +133,12 @@ class SignInCubit extends Cubit<SignInStates> {
   }
 
 
+////change password
 
+  void togglePasswordVisibility() {
+    showPassword = !showPassword;
+    emit(PasswordVisibilityChanged(showPassword));
+  }
 
 
 }

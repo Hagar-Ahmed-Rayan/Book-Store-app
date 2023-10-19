@@ -47,7 +47,7 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
              msg: "Successfully sign up",
             backgroundColor: Colors.green,
            );
-           BlocProvider.of<ProfileCubit>(context).GetUserProfile();
+           BlocProvider.of<HomeCubit>(context).GetUserProfile();
            BlocProvider.of<FavouriteCubit>(context).GetFavourites();
 
 

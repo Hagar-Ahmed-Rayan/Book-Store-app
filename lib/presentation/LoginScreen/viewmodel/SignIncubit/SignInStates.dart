@@ -24,3 +24,12 @@ class keepsigninSelectionChangedState extends SignInStates{
   keepsigninSelectionChangedState(this.iskeepsigninSelected);
 
 }
+/////password
+
+
+class PasswordVisibilityChanged extends SignInStates
+{
+  final bool pass;
+
+  PasswordVisibilityChanged(this.pass);
+}

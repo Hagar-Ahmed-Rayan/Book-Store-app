@@ -1,3 +1,4 @@
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:bookstore/core/Api.dart';
@@ -26,7 +27,7 @@ class UpdateProfileCubit extends Cubit<UpdateProfileStates> {
   String? newcity;
   GovernModel ? governmodel;
   UpdateProfileModel ? userprofilemodel;
-  void UpdateUserProfile(String name,String address,String city,String phone){
+  void UpdateUserProfile(String name,String address,String city,String phone) async{
 
     print(CacheHelper.getData(key: "token"));
     emit(UpdateProfileLoadingState());
@@ -36,6 +37,8 @@ class UpdateProfileCubit extends Cubit<UpdateProfileStates> {
         'address':address,
         'city':city,
         'phone':phone,
+
+
       },
 
       url:ApiConst.UPDATEPROFILE,

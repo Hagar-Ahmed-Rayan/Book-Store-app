@@ -9,6 +9,7 @@ import 'package:bookstore/presentation/ProfileScreen/views/UserProfileScreen.dar
 import 'package:bookstore/presentation/UpdateProfile/viewmodel/UpdateProfileCubit.dart';
 import 'package:bookstore/presentation/UpdateProfile/viewmodel/updateprofileStates.dart';
 import 'package:bookstore/presentation/cart/viewmodel/Cartcubit.dart';
+import 'package:bookstore/presentation/home/viewmodel/HomeCubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -38,7 +39,7 @@ class PlaceOrderScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    var profilecubit=BlocProvider.of<ProfileCubit>(context);
+    var profilecubit=BlocProvider.of<HomeCubit>(context);
     nameController.text= profilecubit.userprofilemodel?.data?.name??'';
     phoneController.text= profilecubit.userprofilemodel?.data?.phone??'';
     emailController.text= profilecubit.userprofilemodel?.data?.email??'';
@@ -66,14 +67,16 @@ class PlaceOrderScreen extends StatelessWidget {
                       child: Text('OK'),
                       onPressed: () {
                         Navigator.pop(context);
-                        Navigator.of(context).pop(); // Navigate back to home screen
+                        Navigator.pop(context);
+                        Navigator.pop(context);
 
-                        Navigator.push(
+                        //   Navigator.of(context).pop(); // Navigate back to home screen
+
+                       /* Navigator.push(
                           context,
                           MaterialPageRoute(builder: (context) => NavBarScreen()),
-                        );
-                   //     Navigator.of(context).pop(); // Close the dialog
-                     //   Navigator.of(context).pop(); // Navigate back to home screen
+                        );*/
+
                       },
                     ),
                   ],

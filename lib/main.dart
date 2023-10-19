@@ -36,11 +36,13 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context)=> RegisterCubit()),
         BlocProvider(create: (context)=>  SignInCubit()),
         BlocProvider(create: (context)=>  HomeCubit()..GetSliders()..GetBestSeller()..GetCategories()..GetArrivals()),
-          BlocProvider(create: (context)=>  BooksCubit()..GetAllProducts()         ),
+         BlocProvider(create: (context)=>  BooksCubit()..GetAllProducts()         ),
+       // BlocProvider(create: (context)=>  BooksCubit()..getAllBooks()         ),
+
 
         BlocProvider(create: (context)=>  SearchCubit()     ),
 
-        BlocProvider(create: (context)=>  ProfileCubit()     ),
+      //  BlocProvider(create: (context)=>  ProfileCubit()     ),
         BlocProvider(create: (context)=>  UpdateProfileCubit()..GetAllGovern()    ),
         BlocProvider(create: (context)=>  FavouriteCubit()    ),
         BlocProvider(create: (context)=>  CartCubit()..GetCart()  ),

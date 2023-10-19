@@ -1,8 +1,12 @@
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:bloc/bloc.dart';
 import 'package:bookstore/core/Api.dart';
+import 'package:bookstore/core/cache_helper.dart';
 import 'package:bookstore/core/dio_helper.dart';
+import 'package:bookstore/presentation/ProfileScreen/models/Logoutmodel/LogoutModel.dart';
+import 'package:bookstore/presentation/ProfileScreen/models/userprofileModel/UserProfileModel.dart';
 import 'package:bookstore/presentation/home/model/BestSellerModel/BestSellerModel.dart';
 import 'package:bookstore/presentation/home/model/CategoriesModel/CateogriesModel.dart';
 import 'package:bookstore/presentation/home/model/SliderModel/SliderModel.dart';
@@ -17,7 +21,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bookstore/presentation/LoginScreen/model/SignUpModel/SignUpModel.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-
+import 'package:image_picker/image_picker.dart';
 
 
 
@@ -146,4 +150,130 @@ print(response.data['data']);
       emit(ArrivalsErrorState(error.toString()));
     });
   }
+///profile
+  UserProfileModel ? userprofilemodel;
+  LogoutModel? logoutmodel;
+  void GetUserProfile(){
+
+    print(CacheHelper.getData(key: "token"));
+    emit(ProfileLoadingState());
+    DioHelper.getData(
+
+      url:ApiConst.GETPROFILE,
+      token:CacheHelper.getData(key: "token"),
+
+    ).then((response) {
+      print("in profile  sucesssssssssssssssssssssssssss");
+      print(response.data);
+
+      userprofilemodel = UserProfileModel.fromJson(response.data);
+
+
+      emit(ProfileSuccessState(userprofilemodel!));
+
+    }).catchError(
+            (error){
+          print("Error in get profile");
+          print(" ${error.toString()}");
+          if (error is DioError) {
+            if (error.response != null) {
+              print(error.response!.data);
+              print(error.response!.statusCode);
+              print(error.response!.statusMessage);
+
+              Fluttertoast.showToast(
+                msg: error.response!.statusMessage!,
+                backgroundColor: Colors.red,
+              );
+
+              Map<String, dynamic> data = error.response!.data;
+
+              //  print(error.response!.headers);
+            } else {
+              print(error.requestOptions);
+              print(error.message);
+            }
+          } else {
+            print(error);
+          }
+          emit(ProfileErrorState(error.toString()));
+
+
+
+
+        });
+
+  }
+
+  void LogOut(){
+
+    print(CacheHelper.getData(key: "token"));
+    emit(LogoutLoadingState());
+    DioHelper.postData(
+
+      url:ApiConst.LOGOUT,
+      token:CacheHelper.getData(key: "token"),
+      data:{},
+
+    ).then((response) {
+      print("log out  sucesssssssssssssssssssssssssss");
+      print(response.data);
+
+      logoutmodel = LogoutModel.fromJson(response.data);
+      Fluttertoast.showToast(msg: 'sucessfully log out',
+          backgroundColor: Colors.green
+      );
+
+      emit(LogoutSuccessState(logoutmodel!));
+
+    }).catchError(
+            (error){
+          print("Error in log out");
+          print(" ${error.toString()}");
+          if (error is DioError) {
+            if (error.response != null) {
+              print(error.response!.data);
+              print(error.response!.statusCode);
+              print(error.response!.statusMessage);
+
+              Fluttertoast.showToast(
+                msg: error.response!.statusMessage!,
+                backgroundColor: Colors.red,
+              );
+
+              Map<String, dynamic> data = error.response!.data;
+
+              //  print(error.response!.headers);
+            } else {
+              print(error.requestOptions);
+              print(error.message);
+            }
+          } else {
+            print(error);
+          }
+          emit(LogoutErrorState(error.toString()));
+
+
+
+
+        });
+
+  }
+
+  ////change pic
+ // File? _image;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

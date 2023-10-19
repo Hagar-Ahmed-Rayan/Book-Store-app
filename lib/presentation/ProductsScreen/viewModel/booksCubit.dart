@@ -26,34 +26,38 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class BooksCubit extends Cubit<BooksStates> {
   BooksCubit() : super(BooksInitialState());
+  static BooksCubit get(context) => BlocProvider.of<BooksCubit>(context);
 
   int page = 1;
+  int total=0;
+  int lastPage=1;
 
  // final Dio dio = Dio();
 
-  static BooksCubit get(context) => BlocProvider.of<BooksCubit>(context);
   //get sliders
   ProductModel? productmodel;
   ScrollController scrollController = ScrollController();
   List<Products>books=[];
 
-  void GetAllProducts(){
+    GetAllProducts() async{
     emit(GetProductsLoadingState());
     DioHelper.getData(
-    //  url: ApiConst.GETALLPRODUCTS,
       url:'/products?page=$page'
 
     ).then((response) {
 
       productmodel = ProductModel.fromJson(response.data);
-      print("GET ALL PRODUCTS DONEEEEEEEEEEEEEEEEEEEEEE");
 
       response.data['data']['products'].map((item){
         books.add(Products.fromJson(item));
       }).toList();
-      print(books);
-      print(books.length);
+      print(books.length);//15
        print(response.data);
+      print(response.data['data']['meta']['total']);//46
+      total=response.data['data']['meta']['total'];
+      lastPage=response.data['data']['meta']['last_page'];//4
+      print(lastPage);
+
       emit(GetProductsSuccessState());
     }).catchError((error){
       print("erorrrrrrrrrrrrrrrrrrrrrrrrrr IN GET ALL PRODUCTS");
@@ -72,24 +76,60 @@ class BooksCubit extends Cubit<BooksStates> {
     });
   }
   //load more products
+
+  /*getAllBooks() async {
+    emit(GetProductsLoadingState());
+    try {
+      print("i am in trrrrrrrrrrrrrrrrrryyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy");
+      Response response =
+      await DioHelper.getData(url: '/products?page=$page');
+      response.data['data']['products'].map((item) {
+        books.add(Products.fromJson(item));
+      }).toList();
+      print(response.data['data']['meta']['total']);
+      total=response.data['data']['meta']['total'];
+      lastPage=response.data['data']['meta']['last_page'];
+      print("kemooooooooooooooooooooooooooooooooooooooooooooooo");
+      print(books.length);
+      print(lastPage);
+      print(response.data);
+      // booksModel = BookModel.fromJson(response.data);
+      // print(model?.message);
+
+      emit(GetProductsSuccessState());
+    } on Exception catch (e) {
+      if (e is DioException) {
+        print(e.response?.data);
+      }
+      print(e.toString());
+      emit(GetProductsErrorState(e.toString()));
+    }
+  }*/
   bool isLoadMore = false;
-  getMoreData() {
-    print("hagrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr");
+
+  getMoreData() {  //page=1,lastpage=4,total=64
 
     scrollController.addListener(() async {
-
-      if (page == 4) {
+      if (page == lastPage) {
         return;
       }
-      else if (scrollController.position.pixels == scrollController.position.maxScrollExtent) {
-        print("asmaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+      else if (scrollController.position.pixels == scrollController.position.maxScrollExtent)
+      {
+
         isLoadMore = true;
-        if (page <= 4) {
-          page++;
-           GetAllProducts();
+        if (page <= lastPage) {
+          page++;//2
+
+        //  await getAllBooks();
+
+         await GetAllProducts();
+
 
         }
+       //   });
+
       }
+
       isLoadMore = false;
     });
   }

@@ -46,14 +46,18 @@ class SignInScreen extends StatelessWidget {
 
           print( state.signinmodel.message);
        //   BlocProvider.of<HomeCubit>(context).GetSliders();
-         // BlocProvider.of<BooksCubit>(context).GetAllProducts();
-          print("tokennnnnnnnnn issssss");
+
+      //    print("tokennnnnnnnnn issssss");
           print(CacheHelper.getData(key: "token"));
 
-          BlocProvider.of<ProfileCubit>(context).GetUserProfile();
+          BlocProvider.of<HomeCubit>(context).GetUserProfile();
+          print("888888888888888888888888888888888888888888888888");
+          print(BlocProvider.of<HomeCubit>(context).userprofilemodel?.data?.name!);
           BlocProvider.of<FavouriteCubit>(context).GetFavourites();
-
-
+        /*  Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(builder: (context) => NavBarScreen()),
+          );*/
          Navigator.push(
             context,
             MaterialPageRoute(builder: (context) => NavBarScreen()),
@@ -142,7 +146,7 @@ class SignInScreen extends StatelessWidget {
                         SizedBox(height: 12.h),
                         TextFormField(
                           controller: _passwordController,
-                          obscureText: true,
+                          obscureText:!SignInCubit.get(context).showPassword,
                           decoration: InputDecoration(
                             labelText: 'Password',
 
@@ -155,6 +159,19 @@ class SignInScreen extends StatelessWidget {
                               color: AppColors.primaryColor
                               ,
                             ),
+
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                SignInCubit.get(context).togglePasswordVisibility(); // Call the function to toggle password visibility
+                              },
+                              child: Icon(
+                                SignInCubit.get(context).showPassword ? Icons.visibility : Icons.visibility_off,
+                                color: AppColors.primaryColor,
+                              ),
+                            ),
+
+
+
                           ),
                           validator: (value) {
                             if (value!.isEmpty) {

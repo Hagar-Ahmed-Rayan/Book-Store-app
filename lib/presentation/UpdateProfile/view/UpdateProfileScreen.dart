@@ -1,10 +1,14 @@
 
+import 'dart:io';
+
 import 'package:bookstore/core/SharedFunctions.dart';
 import 'package:bookstore/core/appcolors.dart';
 import 'package:bookstore/presentation/ProfileScreen/viewmodel/cubit/ProfileCubit.dart';
 import 'package:bookstore/presentation/ProfileScreen/views/UserProfileScreen.dart';
 import 'package:bookstore/presentation/UpdateProfile/viewmodel/UpdateProfileCubit.dart';
 import 'package:bookstore/presentation/UpdateProfile/viewmodel/updateprofileStates.dart';
+import 'package:bookstore/presentation/home/viewmodel/HomeCubit.dart';
+import 'package:bookstore/presentation/home/viewmodel/HomeStates.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,7 +23,7 @@ class UpdateProfileScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    var profilecubit=BlocProvider.of<ProfileCubit>(context);
+    var profilecubit=BlocProvider.of<HomeCubit>(context);
     var cubit=UpdateProfileCubit.get(context);
     nameController.text= profilecubit.userprofilemodel?.data?.name??'';
     phoneController.text= profilecubit.userprofilemodel?.data?.phone??'';
@@ -36,12 +40,20 @@ if(state is UpdateProfileSuccessState) {
     msg: "Successfully update user data",
     backgroundColor: Colors.green,
   );
-  BlocProvider.of<ProfileCubit>(context).GetUserProfile();
+  BlocProvider.of<HomeCubit>(context).GetUserProfile();
   Navigator.pop(context, UserProfileScreen());
 
   /* if(BlocProvider.of<ProfileCubit>(context).userprofilemodel!=null) {
     navto(context, UserProfileScreen());
   }*/
+}
+
+if (state is ProfileImagePickedState) {
+  Fluttertoast.showToast(
+    msg: "Successfully uppload",
+    backgroundColor: Colors.green,
+  );
+
 }
 
         },
@@ -52,13 +64,14 @@ if(state is UpdateProfileSuccessState) {
 
           return SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 0.0),
               child: Form(
                 key: formKey,
                 child: Column(
 
                   children: [
-                  Stack(alignment: Alignment.center,
+
+                    Stack(alignment: Alignment.center,
                     children: [
                       Container(width: double.infinity,height: MediaQuery.of(context).size.height*0.10,
                         decoration:  const BoxDecoration(
@@ -79,6 +92,50 @@ if(state is UpdateProfileSuccessState) {
                     ],
                   ),
                   SizedBox(height: 20.h,),
+                    Stack(
+                      children: [
+                        Container(
+                          width: 100,
+                          height: 100,
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            image: DecorationImage(
+                              image: NetworkImage(
+                                HomeCubit.get(context).userprofilemodel!.data!.image!,
+                                //  'https://example.com/profile_image.jpg',
+                              ),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          right: -8.h,
+                          child: Container(
+                            height: 30.h,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.black.withOpacity(0.5),
+
+                            ),
+                            child: IconButton(
+                              onPressed: (){
+
+
+                              },
+                              icon: Icon(
+                                Icons.camera_alt,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ),
+                        ),
+
+                      ],
+                    ),
+                    SizedBox(
+                        height:8.h
+                    ),
                     Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
