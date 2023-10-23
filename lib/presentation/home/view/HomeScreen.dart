@@ -40,12 +40,7 @@ class HomeScreen extends StatelessWidget {
 
         return WillPopScope(
           onWillPop: () async {
-             print("yesssssssssssssssssssssssssssssssssssssss");
            //  Navigator.pop(context);
-         /*   Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(builder: (context) => SignInScreen()),
-            );*/
             return true; // Return true to prevent the default back navigation
           },
           child: Scaffold(

@@ -84,14 +84,14 @@ class UserProfileScreen extends StatelessWidget {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text('Your Profile',
+                      Text(' Profile',
                           style: TextStyle(
                               fontWeight: FontWeight.bold,
                                   fontSize: 30.sp
 
                           )),
                       SizedBox(
-                        height: 20.h,
+                        height: 10.h,
                       ),
                       IconButton(onPressed: (){
                         HomeCubit.get(context).LogOut();
@@ -170,7 +170,11 @@ class UserProfileScreen extends StatelessWidget {
                         navto(context,UpdateProfileScreen());
                       },
 
-                      child: Text('Edit Profile'),
+                      child: Text('Edit Profile',
+                          style: TextStyle(
+                            color: Colors.black,
+                          )
+                      ),
                     ),
                   ],
                 ),

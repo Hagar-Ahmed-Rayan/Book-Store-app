@@ -5,6 +5,8 @@ import 'package:bookstore/presentation/ProductsScreen/viewModel/booksCubit.dart'
 import 'package:bookstore/presentation/ProductsScreen/viewModel/booksStates.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_offline/flutter_offline.dart';
+
 
 class BooksScreen extends StatelessWidget {
   bool finalpage=false;
@@ -20,10 +22,15 @@ class BooksScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: AppColors.primaryColor,
-            title: Text('Books'),
+            title: Text('Books',
+              style: TextStyle(
+                color: Colors.black,
+              )
+
+            ),
           ),
-          body:(cubit.books.length!=null)?
-         // (BooksCubit.get(context).productmodel?.data?.products!.length!=null)?
+          body:
+          (cubit.books.length!=null)?
           Container(
             //height: 500,
             child: ListView.builder(
@@ -93,6 +100,9 @@ class BooksScreen extends StatelessWidget {
     );
   }
 }
+
+
+
 
 
 /*class BooksScreen extends StatefulWidget {

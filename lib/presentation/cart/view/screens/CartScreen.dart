@@ -24,7 +24,11 @@ class CartScreen extends StatelessWidget {
         return Scaffold(
           appBar: AppBar(
             backgroundColor: AppColors.primaryColor,
-            title: Text('Your Cart'),
+            title: Text('Your Cart',
+                style: TextStyle(
+                  color: Colors.black,
+                )
+            ),
           ),
 
           body:SingleChildScrollView(

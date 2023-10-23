@@ -20,7 +20,11 @@ class FavouriteScreen extends StatelessWidget {
         return Scaffold(
             appBar: AppBar(
               backgroundColor: AppColors.primaryColor,
-              title: Text('Favourite'),
+              title: Text('Favourite',
+                  style: TextStyle(
+                    color: Colors.black,
+                  )
+              ),
             ),
 
           body:

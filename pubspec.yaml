@@ -52,7 +52,8 @@ dependencies:
   calendar_date_picker2: ^0.5.3
   dots_indicator: ^2.1.1
   lottie: ^2.7.0
-  image_picker:
+  flutter_offline: ^3.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

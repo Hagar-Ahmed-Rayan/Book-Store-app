@@ -23,6 +23,11 @@ class UpdateProfileScreen extends StatelessWidget {
   var formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.init(context,
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,);
+
     var profilecubit=BlocProvider.of<HomeCubit>(context);
     var cubit=UpdateProfileCubit.get(context);
     nameController.text= profilecubit.userprofilemodel?.data?.name??'';
@@ -82,11 +87,13 @@ if (state is ProfileImagePickedState) {
                               Color(0xFF05A4A6),
                             //  AppColors.primaryColor,
                             ]),*/
-                            borderRadius: BorderRadius.only(bottomRight: Radius.circular(90),
-                                bottomLeft: Radius.circular(90))),),
+                            borderRadius: BorderRadius.only(bottomRight: Radius.circular(120),
+                                bottomLeft: Radius.circular(120))),),
                       Text('Edit Profile',
                         style: TextStyle(
+                          fontSize: 25.sp,
                           fontWeight: FontWeight.bold
+
 
                         ))
                     ],
@@ -332,7 +339,11 @@ if (state is ProfileImagePickedState) {
                       },
                       style: ElevatedButton.styleFrom(backgroundColor:AppColors.primaryColor
                       ),
-                      child: const Text('Update Profile'))
+                      child: const Text('Update Profile',
+                          style: TextStyle(
+                            color: Colors.black,
+                          )
+                      ))
 
                 ],),
               ),
