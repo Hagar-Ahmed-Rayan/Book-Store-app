@@ -51,6 +51,7 @@ dependencies:
   syncfusion_flutter_datepicker: ^23.1.36
   calendar_date_picker2: ^0.5.3
   dots_indicator: ^2.1.1
+  lottie: ^2.7.0
   image_picker:
 dev_dependencies:
   flutter_test:

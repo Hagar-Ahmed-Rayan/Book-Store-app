@@ -4,6 +4,7 @@ import 'package:bookstore/core/appcolors.dart';
 import 'package:bookstore/presentation/onboarding_screen/onboarding_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatefulWidget {
   @override
@@ -32,17 +33,23 @@ class _SplashScreenState extends State<SplashScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
        //     Spacer(flex: 3),
-            SvgPicture.asset(
+            Lottie.asset('assets/img/booksanimation.json'),
+
+          /*  SvgPicture.asset(
               'assets/img/newsplash.svg',
               width: 200,
               height: 200,
-            ),
+            ),*/
             Text(
-              'book store',
+              'Welocome to Book store',
+              textAlign: TextAlign.center, // Center-align the text
+
               style: TextStyle(
-                fontSize: 35,
+                fontSize: 30,
                 fontWeight: FontWeight.bold,
                 color:AppColors.primaryColor,
+
+
               ),
             ),
           ],
