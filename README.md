@@ -1,26 +1,25 @@
 # Book Store App 
  
 ## Features
--Log in or sign up to access books
--browse different books
--Search for a specific book
--Add/remove from favorite
--Add/remove from Cart
--Checkout
--Place order
--Edit your profile information
--Log out
+-**Log in or sign up to access books**
+-**browse different books**
+-**Search for a specific book**
+-**Add/remove from favorite**
+-**Add/remove from Cart**
+-**Checkout**
+-**Place order**
+-**Edit your profile information**
+-**Log out**
 with Lottie splash screen and onboarding screen.
-this is done with
 
 ## This is done using:-
-- **MVVM Architecture:** 
+- **MVVM Architecture** 
 
-- **Cubit State Management:** 
+- **Cubit State Management** 
 
-- **Dio  with API Integration:** 
+- **Dio  with API Integration** 
 
-- **Responsive Design:** 
+- **Responsive Design** 
 
 
 ## Demo
